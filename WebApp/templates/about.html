@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% extends 'home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+<style>
+  /* Animation styles */
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .about-section {
+    background-color: #D1C286;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px;
+  }
+
+  .about-content {
+    text-align: center;
+    padding: 40px;
+    max-width: 800px;
+    border-radius: 10px;
+    opacity: 0;
+    animation: fadeUp 1s ease-out forwards;
+  }
+
+  .about-content h2 {
+    font-family: Montserrat, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: white;
+    font-size: 24px;
+    line-height: 26px;
+    margin-bottom: 20px;
+  }
+
+  .about-content p {
+    font-family: "Playfair Display", serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #EDE7CF;
+    font-size: 16px;
+    line-height: 27px;
+    margin-bottom: 20px;
+  }
+</style>
+
+</head>
+<body>
+<div class="about-section">
+  <div class="about-content">
+    <h2>About Us</h2>
+    <p>
+      Welcome to <strong>Utopia</strong> — where fantasy meets craftsmanship.
+      Our passion lies in bringing to life the worlds you’ve only dreamed of —
+      through finely crafted replicas and inspired creations drawn from
+      legendary anime, movies, and games.
+    </p>
+    <p>
+      From enchanted relics to futuristic wearables, every piece in our
+      collection is designed to let you carry a piece of your favorite universe
+      into the real world. Whether you’re a collector, cosplayer, or a
+      dreamer at heart — we have something special waiting for you.
+    </p>
+    <p>
+      At <strong>Utopia</strong>, we believe that stories shape us — and
+      through our products, we hope to help you express your love for the worlds
+      that inspire you. Step into our realm, explore the extraordinary,
+      and make a bit of fantasy your reality.
+    </p>
+  </div>
+</div>
+</body>
+</html>
+{% endblock %}

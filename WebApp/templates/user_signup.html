@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up | Utopia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .signup-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .signup-box {
+      background-color: #fff;
+      padding: 50px 60px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      width: 420px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 0.8s ease-out forwards;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      color: #000;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: rgb(130,130,130);
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 30px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #D1C286;
+      border: none;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #b8aa6a;
+    }
+
+    .login-link {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    .login-link a {
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #D1C286;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+    <div class="signup-box">
+      <h2>Join Utopia</h2>
+      <p>Create an account and explore our magical collection</p>
+
+      <form action="{% url 'user_registration' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Full Name" required name="name">
+        <input type="email" placeholder="Email" required name="email">
+        <input type="tel" placeholder="Phone Number" required name="contact">
+        <textarea rows="3" placeholder="Address" required name="address"></textarea>
+        <input type="password" placeholder="Password" required name="pwd">
+        <input type="password" placeholder="Confirm Password" required name="confirm_pwd">
+
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <p class="login-link">Already have an account?
+        <a href="{% url 'user_signin_fun' %}">Sign in</a>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

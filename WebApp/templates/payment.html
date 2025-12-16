@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment • Utopia</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: #d8c98f; /* Utopia beige */
+        font-family: "Poppins", sans-serif;
+        position: relative;
+    }
+
+    /* Back Button */
+    .back-btn {
+        position: absolute;
+        top: 30px;
+        left: 40px;
+        text-decoration: none;
+        font-size: 15px;
+        color: #fff;
+        padding: 10px 18px;
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+        background: rgba(255,255,255,0.15);
+    }
+
+    /* Floating Proceed Button */
+    .pay-btn {
+        position: fixed;
+        bottom: 40px;
+        right: 40px;
+        text-decoration: none;
+        background: #fff;
+        color: #000;
+        padding: 16px 28px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 500;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .pay-btn span {
+        font-size: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .pay-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 35px rgba(0,0,0,0.25);
+    }
+
+    .pay-btn:hover span {
+        transform: translateX(5px);
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Back Button -->
+<a href="{% url 'home_fun' %}" class="back-btn">← Back</a>
+
+<!-- Floating Proceed to Pay Button -->
+<form>
+<button  class="pay-btn">
+    Proceed to Pay
+    <span>→</span>
+</button>
+</form>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_0ib0jPwwZ7I1lT"
+    data-amount="{{payy_str}}"
+    data-currency="INR"
+    data-order_id="{{payment.order_id}}"
+    data-buttontext=""
+    data-name="Utopia"
+    data-description="Your description"
+    data-image=""
+    data-prefill.name="abc"
+    data-prefill.email="abc@gmail.com"
+    data-theme.color="#002f8c"
+ >
+</script>
+</body>
+</html>

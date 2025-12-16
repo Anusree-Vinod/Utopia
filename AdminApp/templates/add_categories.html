@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row mt-3" >
+      <div class="col-lg-6" style="margin:auto">
+         <div class="card">
+           <div class="card-body">
+           <div class="card-title text-center">Add Category Details</div>
+           <hr>
+            <form action="{% url 'save_category' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+           <div class="form-group">
+            <label >Name</label>
+            <input type="text" class="form-control"  placeholder="Enter Category Name" name="name">
+           </div>
+           <div class="form-group">
+            <label >Description</label>
+               <textarea name="desc" class="form-control"></textarea>
+           </div>
+           <div class="form-group">
+            <label >Choose Category Image</label>
+            <input type="file" class="form-control"  name="cat_img" >
+           </div>
+
+           <div class="form-group mt-5 text-center">
+            <button type="submit" class="btn btn-light px-5" > Add Category</button>
+          </div>
+          </form>
+         </div>
+         </div>
+      </div>
+
+</body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'success' %}
+<script>
+    swal('{{i}}','','success')
+</script>
+{% elif i.tags == 'warning' %}
+<script>
+    swal('{{i}}','','warning')
+</script>
+{% elif i.tags == 'info' %}
+<script>
+    swal('{{i}}','','info')
+</script>
+{% else %}
+<script>
+    swal('{{i}}','','error')
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</html>
+{% endblock %}
