@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from AdminApp.models import CategoryDB,ProductDb
 from WebApp.models import RegistrationDB,ContactDB, cartDB,orderDB
+from django.contrib import messages
 import razorpay
 # Create your views here.
 def home_fun(request):
@@ -86,15 +87,19 @@ def user_login(request):
         if RegistrationDB.objects.filter(name=un,password=p).exists():
             request.session['name']=un
             request.session['password']=p
+            messages.success(request, "Login Success!")
             return redirect(home_fun)
         else:
+            messages.warning(request, "Invalid Credentials")
             return redirect(user_signin_fun)
     else:
+        messages.warning(request, "Invalid credentials")
         return redirect(user_signin_fun)
 
 def user_logout(request):
     del request.session['name']
     del request.session['password']
+    messages.success(request, "Logged Out!")
     return redirect(home_fun)
 
 def save_messages(request):
@@ -104,6 +109,7 @@ def save_messages(request):
         m = request.POST.get('msg')
         obj = ContactDB(name=n,email=e,message=m)
         obj.save()
+        messages.success(request, "Message Send Successfully!")
         return redirect(contact_fun)
 
 def cart_fun(request):
@@ -133,11 +139,13 @@ def save_cart(request):
         img = prod.image if prod else None
         obj = cartDB(username=un,product=p,price=price,quantity=qty,total=t,image=img)
         obj.save()
+        messages.success(request, "Item added to cart!!")
         return redirect(products_page_fun)
 
 def delete_cart_item(request,p_id):
     data = cartDB.objects.filter(id=p_id)
     data.delete()
+    messages.success(request, "Item Deleted!!")
     return redirect(cart_fun)
 
 def save_order(request):
